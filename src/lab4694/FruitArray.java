@@ -4,15 +4,13 @@ public class FruitArray {
 	
 	public static void main(String[] args) {
 		
-		
-		// --------------- Part 1 ---------------
-		
+		// ------------------ Part 1 ------------------
 		
         // 1: Create a string array of size 10 with fruit names
         String[] fruits = {"Apple", "Avocado", "Apricot", "Berry", "Banana", "Orange", "Peach", "Kiwi", "Mango", "Plum"};
 
         // 2: Show the original array and array size
-        System.out.print("Original Array: ");
+        System.out.println("Original Array: ");
         displayArray(fruits);
         System.out.println("Original Array Size: " + fruits.length);
 
@@ -21,40 +19,40 @@ public class FruitArray {
 
         // 4: Insert a new fruit name at index 3 of the array
         String newFruit = "Grape";
-        insertFruitAtIndex(copiedArray, newFruit, 3);
+        insertElement(copiedArray, newFruit, 3);
         System.out.println("\nNew Fruit: " + newFruit);
 
         // 4a. Show the current array and array size
-        System.out.print("\nAfter Insertion at index 3 Array: ");
+        System.out.println("\nAfter Insertion at index 3 Array: ");
         displayArray(copiedArray);
         System.out.println("After Insertion at index 3 Array Size: " + copiedArray.length);
 
         // 4b. Create a new array of size 11, insert the new fruit at index 3
         String[] newArray = new String[11];
         System.arraycopy(fruits, 0, newArray, 0, fruits.length);
-        insertFruitAtIndex(newArray, newFruit, 3);
-        System.out.print("\nAfter Insertion at index 3 of new Array: ");
+        insertElement(newArray, newFruit, 3);
+        System.out.println("\nAfter Insertion at index 3 of new Array: ");
         displayArray(newArray);
         System.out.println("After Insertion at index 3 of new Array Size: " + newArray.length);
 
         // 5: Delete the fruit from index 6 of original array
-        String deletedFruit = deleteFruitAtIndex(fruits, 6);
+        String deletedFruit = deleteElement(fruits, 6);
         System.out.println("\nDeleted Fruit: " + deletedFruit);
 
         // 5a. Show the current array and array size
-        System.out.print("\nAfter deleting from index 6 of Array: ");
+        System.out.println("\nAfter deleting from index 6 of Array: ");
         displayArray(fruits);
         System.out.println("After deleting from index 6 of Array Size: " + fruits.length);
 
         // 5b. Create an array of size 9 with updated fruit names after deletion
         String[] updatedArray = new String[9];
         System.arraycopy(fruits, 0, updatedArray, 0, updatedArray.length);
-        System.out.print("\nAfter deleting from index 6 of new Array: ");
+        System.out.println("\nAfter deleting from index 6 of new Array: ");
         displayArray(updatedArray);
         System.out.println("After deleting from index 6 of new Array Size: " + updatedArray.length);
 
         
-        // --------------- Part 2 ---------------
+        // ------------------ Part 2: ------------------
 
         
         // 1. Create a linked list of strings
@@ -73,7 +71,7 @@ public class FruitArray {
         linkedList.addNode("Plum");
 
         // 3. Display the original linked list
-        System.out.print("\nNodes of singly linked list: ");
+        System.out.println("\nNodes of singly linked list:");
         linkedList.displayList();
 
         // 4. Find the size of the linked list
@@ -93,25 +91,23 @@ public class FruitArray {
         System.out.println("]");
     }
 
-    // Insert a fruit at a specific index in the array
-    private static void insertFruitAtIndex(String[] array, String fruit, int index) {
-        for (int i = array.length - 1; i > index; i--) {
+    // Insertion algorithm
+    private static void insertElement(String[] array, String newElement, int position) {
+        for (int i = array.length - 1; i >= position; i--) {
             array[i] = array[i - 1];
         }
-        array[index] = fruit;
+        array[position] = newElement;
     }
 
-    // Delete a fruit at a specific index in the array
-    private static String deleteFruitAtIndex(String[] array, int index) {
-        String deletedFruit = array[index];
-        for (int i = index; i < array.length - 1; i++) {
-            array[i] = array[i + 1];
+    // Deletion algorithm
+    private static String deleteElement(String[] array, int position) {
+        String deletedElement = array[position];
+        for (int i = position + 1; i < array.length; i++) {
+            array[i - 1] = array[i];
         }
-        array[array.length - 1] = array[array.length - 2];
-        return deletedFruit;
+        return deletedElement;
     }
 
-    // Linked List implementation
     private static class Node {
         String data;
         Node next;
@@ -150,9 +146,7 @@ public class FruitArray {
                 System.out.println("Singly Linked List is empty");
                 return;
             }
-
             Node current = head;
-            System.out.print("\n");
             while (current != null) {
                 System.out.print(current.data + " ");
                 current = current.next;
@@ -165,3 +159,4 @@ public class FruitArray {
         }
     }
 }
+
